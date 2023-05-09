@@ -30,7 +30,7 @@ export const ACTIONS = {
 const reducer = (state, { type, payload }) => {
   switch (type) {
     case ACTIONS.JOINNUM:
-      if (state.currentNum && state.currentNum.length >= 9) {
+      if (state.currentNum && state.currentNum.length >= 9) { // max length function (9 digits including a .)
         return state;
       }
 
@@ -88,6 +88,7 @@ const reducer = (state, { type, payload }) => {
         currentNum: null,
       };
 
+      // equal button function
       case ACTIONS.EQUALITY:
         if (state.currentNum !== null && state.previousNum === null) return state;
   
@@ -134,16 +135,16 @@ const reducer = (state, { type, payload }) => {
     return result.toString();
   };  
 
+// main function
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { currentNum, operator, previousNum } = state;
 
   return (
     <div className="App">
-      <div className="output">
-        {previousNum}
-        {operator}
-        {currentNum}
+      <div className="calculator-container">
+      <div className="output result">
+      <span>{previousNum}{operator}{currentNum}</span>
       </div>
       <div className="button">
         <NumberButton dispatch={dispatch} num="0" />
@@ -174,6 +175,7 @@ function App() {
         <OperatorButton dispatch={dispatch} operator="*" />
         <OperatorButton dispatch={dispatch} operator="/" />
       </div>
+    </div>
     </div>
   );
 }
