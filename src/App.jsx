@@ -19,7 +19,7 @@ const initialState = {
   override: false,
 };
 
-// main buttons
+// main actions
 export const ACTIONS = {
   JOINNUM: 'join-numbers',
   CLEAR: 'clear',
@@ -169,8 +169,7 @@ function App() {
   return (
     <div className="App">
       <div className="calculator-container">
-      <div className="output result">
-        
+      <div class="output result" data-testid="output">
       <span>{previousNum}{operator}{currentNum}</span>
       </div>
       <div className="button">
