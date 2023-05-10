@@ -10,7 +10,7 @@ import { ACTIONS } from '../App';
 
 const NumberButton = ({ dispatch, num }) => {
   return (
-    <button 
+    <button
       className="glow-on-hover"
       onClick={() => dispatch({ type: ACTIONS.JOINNUM, payload: num })}
     >

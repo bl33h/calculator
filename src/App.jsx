@@ -25,6 +25,7 @@ export const ACTIONS = {
   CLEAR: 'clear',
   CHOOSE_OPERATOR: 'choose-operator',
   EQUALITY: 'equality',
+  NEGATE: 'negate'
 };
 
 const reducer = (state, { type, payload }) => {
@@ -88,7 +89,18 @@ const reducer = (state, { type, payload }) => {
         currentNum: null,
       };
 
-      // equal button function
+      // negate function button 
+      case ACTIONS.NEGATE:
+      if (state.currentNum === null) {
+        return state;
+      }
+      const newNum = state.currentNum * -1;
+      return {
+        ...state,
+        currentNum: newNum.toString(),
+      };
+
+      // equal function button
       case ACTIONS.EQUALITY:
         if (state.currentNum !== null && state.previousNum === null) return state;
   
@@ -105,13 +117,24 @@ const reducer = (state, { type, payload }) => {
   
         return {
           ...state,
-          currentNum: result,
+          currentNum: formatOutput(result),
           previousNum: null,
           operator: null,
           override: true,
-        };
+        };        
     }
   };
+
+  // output character limit function
+  const formatOutput = (output) => {
+    if (output === 'ERROR') {
+      return output;
+    }
+    if (output.toString().length > 9) {
+      return output.toString().slice(0, 9);
+    }
+    return output;
+  };    
 
   const evaluate = ({ currentNum, operator, previousNum }) => {
     const current = Number(currentNum);
@@ -129,12 +152,15 @@ const reducer = (state, { type, payload }) => {
     if (operator === '/') {
       result = prev / current;
     }
+    if (operator === '%') {
+      result = current*prev/100; 
+    }
     if (result > 999999999) {
       return 'ERROR';
     }
-    return result.toString();
+    return result;
   };  
-
+  
 // main function
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -144,6 +170,7 @@ function App() {
     <div className="App">
       <div className="calculator-container">
       <div className="output result">
+        
       <span>{previousNum}{operator}{currentNum}</span>
       </div>
       <div className="button">
@@ -161,12 +188,16 @@ function App() {
       </div>
       <div>
         <button
-        className="glow-on-hover"
+        className="glow-on-hover-2"
         onClick={() => dispatch({ type: ACTIONS.CLEAR })}>AC
         </button>
         <button 
-        className="glow-on-hover"
+        className="glow-on-hover-2"
         onClick={() => dispatch({ type: ACTIONS.EQUALITY })}>=
+        </button>
+        <button
+        className="glow-on-hover-2"
+        onClick={() => dispatch({ type: ACTIONS.NEGATE })}>+/-
         </button>
       </div>
       <div className="operator">
@@ -174,6 +205,7 @@ function App() {
         <OperatorButton dispatch={dispatch} operator="-" />
         <OperatorButton dispatch={dispatch} operator="*" />
         <OperatorButton dispatch={dispatch} operator="/" />
+        <OperatorButton dispatch={dispatch} operator="%" />
       </div>
     </div>
     </div>

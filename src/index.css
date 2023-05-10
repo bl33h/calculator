@@ -72,7 +72,37 @@ button:focus-visible {
   border-radius: 10px;
 }
 
+.glow-on-hover-2 {
+  width: 115px;
+  height: 50px;
+  border: 20px;
+  outline: none;
+  color: #fff;
+  background: #0ba1b9;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+}
+
 .glow-on-hover:before {
+  content: '';
+  background: linear-gradient(45deg, #fbacce, #a6e3f9, #ffb915, #d1ff51, #5278f6, #d0a7fb, #ff83e4, #fb7373);
+  position: absolute;
+  top: -2px;
+  left:-2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 10px;
+}
+
+.glow-on-hover-2:before {
   content: '';
   background: linear-gradient(45deg, #fbacce, #a6e3f9, #ffb915, #d1ff51, #5278f6, #d0a7fb, #ff83e4, #fb7373);
   position: absolute;
@@ -93,11 +123,23 @@ button:focus-visible {
   color: #fff
 }
 
+.glow-on-hover-2:active {
+  color: #fff
+}
+
 .glow-on-hover:active:after {
   background: transparent;
 }
 
+.glow-on-hover-2:active:after {
+  background: transparent;
+}
+
 .glow-on-hover:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover-2:hover:before {
   opacity: 1;
 }
 
@@ -108,6 +150,18 @@ button:focus-visible {
   width: 100%;
   height: 100%;
   background: #BB6187;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+.glow-on-hover-2:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #0ba1b9;
   left: 0;
   top: 0;
   border-radius: 10px;
@@ -150,7 +204,7 @@ button:focus-visible {
   align-items: center;
   background-color: #ffff;
   border-radius: 10px;
-  margin: 20px auto;
+  margin: 2px auto;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;

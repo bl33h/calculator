@@ -11,7 +11,7 @@ import { ACTIONS } from '../App';
 const OperatorButton = ({ dispatch, operator }) => {
   return (
     <button
-      className="glow-on-hover"
+      className="glow-on-hover-2"
       onClick={() =>
         dispatch({ type: ACTIONS.CHOOSE_OPERATOR, payload: operator })
       }
