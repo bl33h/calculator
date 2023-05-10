@@ -31,5 +31,5 @@ $ npm run dev
 
 ```bash
 # Run the tests
-$ npm tests
+$ npm test
 ```
