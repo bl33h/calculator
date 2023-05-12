@@ -14,8 +14,6 @@ To clone and run this application, you'll need [Git]
 (https://git-scm.com), [Node.js] (https://nodejs.org/en) and [Vite] (https://vitejs.dev/) installed on your computer. From your command line:
 
 ```bash
-
-```bash
 # Clone this repository
 $ git clone https://github.com/bl33h/calculator.git
 
